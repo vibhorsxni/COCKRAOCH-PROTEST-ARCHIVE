@@ -37,7 +37,7 @@ function App() {
   const [events, setEvents] = useState(initialEvents);
   const [activeEventId, setActiveEventId] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [viewMode, setViewMode] = useState('horizontal'); // 'horizontal' or 'vertical'
+  const [viewMode, setViewMode] = useState('vertical'); // Default to 'vertical' for both desktop and mobile
   const [sortOrder, setSortOrder] = useState('newest'); // 'newest' (default) or 'oldest'
   const [selectedPhase, setSelectedPhase] = useState('All Phases');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -57,8 +57,6 @@ function App() {
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
-      // Auto default view mode based on screen width if not manually overridden
-      if (mobile) setViewMode('vertical');
     };
     
     handleResize();
