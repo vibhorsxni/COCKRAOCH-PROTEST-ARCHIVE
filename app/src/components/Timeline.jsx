@@ -135,32 +135,40 @@ const Timeline = ({
   const timelineRef = useRef(null);
   const [progress, setProgress] = useState(0);
 
-  // Scroll Progress calculation
+  // Scroll Progress & Mouse Wheel handling
   useEffect(() => {
+    const el = timelineRef.current;
+    if (!el) return;
+
     const handleScroll = () => {
-      if (!timelineRef.current) return;
-      
       if (isMobile) {
-        const { scrollTop, scrollHeight, clientHeight } = timelineRef.current;
-        const p = scrollTop / (scrollHeight - clientHeight);
-        setProgress(p * 100 || 0);
+        const { scrollTop, scrollHeight, clientHeight } = el;
+        const maxScroll = scrollHeight - clientHeight;
+        const p = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
+        setProgress(p);
       } else {
-        const { scrollLeft, scrollWidth, clientWidth } = timelineRef.current;
-        const p = scrollLeft / (scrollWidth - clientWidth);
-        setProgress(p * 100 || 0);
+        const { scrollLeft, scrollWidth, clientWidth } = el;
+        const maxScroll = scrollWidth - clientWidth;
+        const p = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+        setProgress(p);
       }
     };
 
-    const currentRef = timelineRef.current;
-    if (currentRef) {
-      currentRef.addEventListener('scroll', handleScroll);
-      handleScroll();
-    }
-    
-    return () => {
-      if (currentRef) {
-        currentRef.removeEventListener('scroll', handleScroll);
+    // Horizontal mouse wheel scrolling fallback
+    const handleWheel = (e) => {
+      if (!isMobile && el && e.deltaY !== 0) {
+        el.scrollLeft += e.deltaY;
+        e.preventDefault();
       }
+    };
+
+    el.addEventListener('scroll', handleScroll);
+    el.addEventListener('wheel', handleWheel, { passive: false });
+    handleScroll();
+
+    return () => {
+      el.removeEventListener('scroll', handleScroll);
+      el.removeEventListener('wheel', handleWheel);
     };
   }, [isMobile, events]);
 
