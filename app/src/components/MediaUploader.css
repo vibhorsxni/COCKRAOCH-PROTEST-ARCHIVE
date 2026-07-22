@@ -7,19 +7,24 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  z-index: 100;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 20px;
+  padding: 40px 20px 140px 20px;
+  overflow-y: auto;
 }
 
 .modal-content {
   width: 100%;
-  max-width: 500px;
+  max-width: 520px;
   padding: 32px;
+  margin: auto;
+  position: relative;
+  overflow: visible;
 }
 
 .modal-header {
@@ -238,17 +243,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /* ── Drop-down panel ── */
 .tp-panel {
   position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
+  bottom: calc(100% + 8px);
   right: 0;
-  z-index: 200;
+  width: 275px;
+  z-index: 3000;
   padding: 16px;
   border-radius: 16px;
-  background: rgba(12, 16, 28, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(59, 130, 246, 0.35);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59,130,246,0.15);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(59, 130, 246, 0.3);
 }
 
 /* ── Body (columns) ── */
@@ -436,9 +441,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
    CALENDAR PICKER
 ═══════════════════════════════════════════ */
 
-/* Wider panel for the grid */
+/* Wider panel for the grid — opens upwards */
 .cal-panel {
-  min-width: 280px;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  min-width: 290px;
+  z-index: 3000;
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
 }
 
 /* Month / year navigation row */
