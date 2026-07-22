@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { Upload, LayoutGrid, Layers, Search, Filter, Monitor, Smartphone, ShieldCheck } from 'lucide-react';
+import { Upload, LayoutGrid, Layers, Search, Filter, Monitor, Smartphone, ShieldCheck, ArrowUpDown, ArrowUp, ArrowDown } from 'lucide-react';
 import Timeline from './components/Timeline';
 import MediaUploader from './components/MediaUploader';
 import HostAuthModal from './components/HostAuthModal';
@@ -38,6 +38,7 @@ function App() {
   const [activeEventId, setActiveEventId] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const [viewMode, setViewMode] = useState('horizontal'); // 'horizontal' or 'vertical'
+  const [sortOrder, setSortOrder] = useState('newest'); // 'newest' (default) or 'oldest'
   const [selectedPhase, setSelectedPhase] = useState('All Phases');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -212,18 +213,41 @@ function App() {
     }
   };
 
-  // Filter events by Phase, Category, and Search Query
-  const filteredEvents = events.filter(event => {
-    const matchesPhase = selectedPhase === 'All Phases' || event.phase === selectedPhase;
-    const matchesCategory = selectedCategory === 'All' || event.category === selectedCategory;
-    const q = searchQuery.toLowerCase().trim();
-    const matchesSearch = !q || 
-      event.title.toLowerCase().includes(q) || 
-      event.description.toLowerCase().includes(q) ||
-      (event.location && event.location.toLowerCase().includes(q));
+  // Scroll to Top or Bottom helper
+  const handleScrollTo = (target) => {
+    const el = document.querySelector('.timeline-wrapper');
+    if (!el) return;
+    if (viewMode === 'vertical') {
+      el.scrollTo({
+        top: target === 'top' ? 0 : el.scrollHeight,
+        behavior: 'smooth'
+      });
+    } else {
+      el.scrollTo({
+        left: target === 'top' ? 0 : el.scrollWidth,
+        behavior: 'smooth'
+      });
+    }
+  };
 
-    return matchesPhase && matchesCategory && matchesSearch;
-  });
+  // Filter & Sort events by Phase, Category, Search Query, and Sort Order (Default: Newest First)
+  const filteredEvents = events
+    .filter(event => {
+      const matchesPhase = selectedPhase === 'All Phases' || event.phase === selectedPhase;
+      const matchesCategory = selectedCategory === 'All' || event.category === selectedCategory;
+      const q = searchQuery.toLowerCase().trim();
+      const matchesSearch = !q || 
+        event.title.toLowerCase().includes(q) || 
+        event.description.toLowerCase().includes(q) ||
+        (event.location && event.location.toLowerCase().includes(q));
+
+      return matchesPhase && matchesCategory && matchesSearch;
+    })
+    .sort((a, b) => {
+      const timeA = new Date(a.timestamp).getTime();
+      const timeB = new Date(b.timestamp).getTime();
+      return sortOrder === 'newest' ? timeB - timeA : timeA - timeB;
+    });
 
   return (
     <div className="app-container">
@@ -254,6 +278,42 @@ function App() {
             >
               <Smartphone size={15} />
               <span className="btn-label">Vertical</span>
+            </button>
+          </div>
+
+          {/* Sort Order Configuration Switcher (Default: Newest First) */}
+          <div className="sort-order-toggle glass-panel">
+            <button 
+              className={`sort-order-btn ${sortOrder === 'newest' ? 'active' : ''}`}
+              onClick={() => setSortOrder('newest')}
+              title="Most recent events at top / first"
+            >
+              <ArrowDown size={14} /> Newest First
+            </button>
+            <button 
+              className={`sort-order-btn ${sortOrder === 'oldest' ? 'active' : ''}`}
+              onClick={() => setSortOrder('oldest')}
+              title="Earliest events at top / first"
+            >
+              <ArrowUp size={14} /> Oldest First
+            </button>
+          </div>
+
+          {/* Quick Scroll Navigation Buttons */}
+          <div className="scroll-nav-controls glass-panel">
+            <button 
+              className="scroll-nav-btn"
+              onClick={() => handleScrollTo('top')}
+              title="Jump to Top"
+            >
+              <ArrowUp size={13} /> Top
+            </button>
+            <button 
+              className="scroll-nav-btn"
+              onClick={() => handleScrollTo('bottom')}
+              title="Jump to Bottom"
+            >
+              <ArrowDown size={13} /> Bottom
             </button>
           </div>
 
@@ -394,6 +454,23 @@ function App() {
           />
         )}
       </AnimatePresence>
+      {/* Floating Bottom-Right Quick Scroll Action Buttons */}
+      <div className="floating-scroll-bar glass-panel">
+        <button 
+          className="floating-scroll-btn"
+          onClick={() => handleScrollTo('top')}
+          title="Scroll to Top / Latest"
+        >
+          <ArrowUp size={16} />
+        </button>
+        <button 
+          className="floating-scroll-btn"
+          onClick={() => handleScrollTo('bottom')}
+          title="Scroll to Bottom / Oldest"
+        >
+          <ArrowDown size={16} />
+        </button>
+      </div>
     </div>
   );
 }
