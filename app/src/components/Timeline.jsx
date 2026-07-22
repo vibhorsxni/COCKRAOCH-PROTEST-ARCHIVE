@@ -284,13 +284,13 @@ const Timeline = ({
                     <div className="card-footer">
                       <div className="footer-stats">
                         {event.location && (
-                          <span className="stat" title={event.location}>
+                          <span className="stat-location" title={event.location}>
                             <MapPin size={12} /> {event.location.split(',')[0]}
                           </span>
                         )}
 
                         {mediaCount > 0 && (
-                          <span className="media-count-badge" style={{ background: `${catColor}30`, color: catColor, border: `1px solid ${catColor}50` }}>
+                          <span className="media-count-badge" style={{ background: `${catColor}25`, color: catColor, border: `1px solid ${catColor}40` }}>
                             {mediaCount} media
                           </span>
                         )}
@@ -308,14 +308,14 @@ const Timeline = ({
                           onClick={(e) => { e.stopPropagation(); onVote(event.id, 'up'); }}
                           title="Upvote event"
                         >
-                          <ThumbsUp size={13} /> {event.upvotes || 0}
+                          <ThumbsUp size={13} /> <span>{event.upvotes || 0}</span>
                         </button>
                         <button 
                           className={`vote-btn downvote ${userVotes[event.id] === 'down' ? 'voted' : ''}`} 
                           onClick={(e) => { e.stopPropagation(); onVote(event.id, 'down'); }}
                           title="Downvote event"
                         >
-                          <ThumbsDown size={13} /> {event.downvotes || 0}
+                          <ThumbsDown size={13} /> <span>{event.downvotes || 0}</span>
                         </button>
 
                         {/* Report Event (User role) */}

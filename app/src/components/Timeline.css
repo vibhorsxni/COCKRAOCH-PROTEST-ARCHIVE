@@ -268,39 +268,92 @@
 
 .card-footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-stats {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 0.8rem;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
   color: var(--text-secondary);
 }
 
-.stat {
-  display: flex;
+.stat-location {
+  display: inline-flex;
   align-items: center;
   gap: 4px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
 }
 
 .media-count-badge, .sources-count-badge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 12px;
   font-weight: 600;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
+  white-space: nowrap;
 }
 
 .sources-count-badge {
   background: rgba(59, 130, 246, 0.12);
   border: 1px solid rgba(59, 130, 246, 0.25);
   color: #93c5fd;
+}
+
+.vote-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 20px;
+  align-self: flex-start;
+}
+
+.vote-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 14px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.vote-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.vote-btn.upvote.voted {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.15);
+}
+
+.vote-btn.downvote.voted {
+  color: #f43f5e;
+  background: rgba(244, 63, 94, 0.15);
 }
 
 .report-event-btn, .host-delete-event-btn {
@@ -328,30 +381,6 @@
 .host-delete-event-btn:hover {
   background: rgba(239, 68, 68, 0.25);
   color: #ef4444;
-}
-
-.vote-controls {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 4px;
-  border-radius: 16px;
-}
-
-.vote-btn {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  border-radius: 12px;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
 }
 
 .vote-btn:hover {
@@ -680,21 +709,23 @@
 
 .vertical .event-card {
   width: 100%;
-  max-width: 280px; /* Reduced banner size */
-  padding: 12px;
-  gap: 8px;
+  max-width: 480px;
+  padding: 16px;
+  gap: 12px;
+  box-sizing: border-box;
 }
 
 .vertical .card-thumbnail {
-  height: 120px; /* Reduced from 160px for mobile banners */
+  height: 160px;
+  border-radius: 10px;
 }
 
 .vertical .title {
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
 .vertical .description {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
 }
 
 .vertical .expanded-details-container {
