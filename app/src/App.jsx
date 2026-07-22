@@ -19,6 +19,7 @@ const PHASES = [
 
 const CATEGORIES = [
   'All',
+  'Reel',
   'Judicial',
   'Movement',
   'Viral',
@@ -232,7 +233,12 @@ function App() {
   const filteredEvents = events
     .filter(event => {
       const matchesPhase = selectedPhase === 'All Phases' || event.phase === selectedPhase;
-      const matchesCategory = selectedCategory === 'All' || event.category === selectedCategory;
+      const matchesCategory = selectedCategory === 'All' 
+        ? true 
+        : selectedCategory === 'Reel'
+          ? (event.category === 'Reel' || (event.socialLinks && event.socialLinks.length > 0))
+          : event.category === selectedCategory;
+
       const q = searchQuery.toLowerCase().trim();
       const matchesSearch = !q || 
         event.title.toLowerCase().includes(q) || 
@@ -375,10 +381,10 @@ function App() {
             {CATEGORIES.map(cat => (
               <button
                 key={cat}
-                className={`category-chip ${selectedCategory === cat ? 'active' : ''}`}
+                className={`category-chip ${cat === 'Reel' ? 'reel-chip' : ''} ${selectedCategory === cat ? 'active' : ''}`}
                 onClick={() => setSelectedCategory(cat)}
               >
-                {cat}
+                {cat === 'Reel' ? '🎬 Reel' : cat}
               </button>
             ))}
           </div>
