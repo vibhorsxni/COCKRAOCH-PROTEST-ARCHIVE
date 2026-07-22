@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   UploadCloud, X, Calendar, Clock, Video, Image as ImageIcon,
   Link as LinkIcon, ChevronUp, ChevronDown, ChevronLeft, ChevronRight,
-  TvMinimalPlay, ImagePlay
+  TvMinimalPlay, ImagePlay, MapPin, Layers, Tag, AlignLeft, Sparkles
 } from 'lucide-react';
 import './MediaUploader.css';
 
@@ -31,6 +31,29 @@ const detectEmbed = (url) => {
   
   return null;
 };
+
+const PHASES_LIST = [
+  'Phase 1: The Spark',
+  'Phase 2: Birth of Movement',
+  'Phase 3: NEET Leak & Escalation',
+  'Phase 4: The Hunger Strike',
+  'Phase 5: Sansad Chalo March'
+];
+
+const CATEGORY_MAP = [
+  { name: 'Live Update', color: '#06b6d4' },
+  { name: 'March', color: '#ef4444' },
+  { name: 'Protest', color: '#22c55e' },
+  { name: 'Hunger Strike', color: '#3b82f6' },
+  { name: 'Police Action', color: '#ec4899' },
+  { name: 'Crackdown', color: '#a855f7' },
+  { name: 'Judicial', color: '#ef4444' },
+  { name: 'Movement', color: '#f97316' },
+  { name: 'Scandal', color: '#eab308' },
+  { name: 'Campaign', color: '#14b8a6' },
+  { name: 'Negotiation', color: '#fb7185' },
+  { name: 'Viral', color: '#fb923c' }
+];
 
 /* ═══════════════════════════════════════════════════════
    SHARED HELPERS
@@ -243,10 +266,15 @@ const MediaUploader = ({ onClose, onUpload }) => {
   const [dragActive, setDragActive] = useState(false);
   const [file,       setFile]       = useState(null);
   const [embedUrl,   setEmbedUrl]   = useState('');
+  const [phase,      setPhase]      = useState('Phase 5: Sansad Chalo March');
+  const [category,   setCategory]   = useState('Live Update');
   const [title,      setTitle]      = useState('');
+  const [description, setDescription] = useState('');
+  const [location,   setLocation]   = useState('');
   const [date,       setDate]       = useState('');
   const [time,       setTime]       = useState('12:00');
   const [link,       setLink]       = useState('');
+  const [socialLink, setSocialLink] = useState('');
   const [isMajor,    setIsMajor]    = useState(false);
 
   const embed = detectEmbed(embedUrl);
@@ -263,42 +291,59 @@ const MediaUploader = ({ onClose, onUpload }) => {
   };
   const handleChange = (e) => { if (e.target.files?.[0]) setFile(e.target.files[0]); };
 
-  // Valid if: image file OR valid embed link
-  const hasMedia = file || (embed !== null);
-  const canSubmit = hasMedia && title && date && time;
+  const canSubmit = title.trim() && description.trim() && date && time;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!canSubmit) return;
 
     const timestamp = new Date(`${date}T${time}`).toISOString();
+    const catObj = CATEGORY_MAP.find(c => c.name === category) || { name: category, color: '#06b6d4' };
 
     let mediaItem;
     if (file) {
       const fileUrl = URL.createObjectURL(file);
       mediaItem = { type: 'image', url: fileUrl };
-    } else {
+    } else if (embed) {
       mediaItem = {
         type: 'embed',
-        embedType: embed.type,           // 'youtube' | 'instagram'
+        embedType: embed.type,
         embedId:   embed.id,
         embedUrl:  embed.embedUrl,
-        url:       embedUrl,             // original link (for display)
+        url:       embedUrl,
       };
     }
 
+    const defaultThumbnail = file
+      ? URL.createObjectURL(file)
+      : embed?.type === 'youtube'
+        ? `https://img.youtube.com/vi/${embed.id}/hqdefault.jpg`
+        : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80';
+
     onUpload({
-      id: `e_${Date.now()}`, title, timestamp,
-      description: 'Newly uploaded media event.',
-      mediaCount: 1, contributors: 1, location: 'Uploaded',
-      thumbnail: file
-        ? URL.createObjectURL(file)
-        : embed?.type === 'youtube'
-          ? `https://img.youtube.com/vi/${embed.id}/hqdefault.jpg`
-          : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80',
-      color: 'var(--accent-blue)', isMajor, isLive: false,
-      link: link.trim() !== '' ? link : undefined,
-      media: [mediaItem],
+      id: `e_${Date.now()}`,
+      phase,
+      category,
+      categoryColor: catObj.color,
+      title: title.trim(),
+      description: description.trim(),
+      timestamp,
+      location: location.trim() || 'New Delhi',
+      thumbnail: defaultThumbnail,
+      upvotes: 0,
+      downvotes: 0,
+      contributors: 1,
+      isMajor,
+      isLive: false,
+      links: link.trim() ? [link.trim()] : [],
+      socialLinks: socialLink.trim() ? [
+        {
+          title: `${title.trim()} Video Clip`,
+          url: socialLink.trim(),
+          timestamp: new Date().toISOString()
+        }
+      ] : [],
+      media: mediaItem ? [mediaItem] : []
     });
     onClose();
   };
@@ -311,16 +356,115 @@ const MediaUploader = ({ onClose, onUpload }) => {
         exit={{ opacity: 0, scale: 0.9, y: 20 }}>
 
         <div className="modal-header">
-          <h2>Upload Media</h2>
+          <h2>Create &amp; Upload Event</h2>
           <button className="close-btn" onClick={onClose}><X size={24} /></button>
         </div>
 
         <form onSubmit={handleSubmit} className="upload-form">
 
-          {/* ── Image drop zone (images only) ── */}
+          {/* ── Phase & Category Selectors ── */}
+          <div className="form-row">
+            <div className="form-group">
+              <label><Layers size={15} /> Phase</label>
+              <select 
+                className="form-select-box"
+                value={phase} 
+                onChange={e => setPhase(e.target.value)}
+              >
+                {PHASES_LIST.map(p => (
+                  <option key={p} value={p}>{p}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label><Tag size={15} /> Category</label>
+              <select 
+                className="form-select-box"
+                value={category} 
+                onChange={e => setCategory(e.target.value)}
+              >
+                {CATEGORY_MAP.map(c => (
+                  <option key={c.name} value={c.name}>{c.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* ── Title ── */}
+          <div className="form-group">
+            <label>Event Title *</label>
+            <input 
+              type="text" 
+              value={title} 
+              onChange={e => setTitle(e.target.value)} 
+              placeholder="e.g. Sansad Chalo March Barricade Clashes" 
+              required 
+            />
+          </div>
+
+          {/* ── Description ── */}
+          <div className="form-group">
+            <label><AlignLeft size={15} /> Event Description *</label>
+            <textarea 
+              className="form-textarea-box"
+              rows={4}
+              value={description} 
+              onChange={e => setDescription(e.target.value)} 
+              placeholder="Provide a detailed summary of what occurred during this event..." 
+              required 
+            />
+          </div>
+
+          {/* ── Location ── */}
+          <div className="form-group">
+            <label><MapPin size={15} /> Location</label>
+            <input 
+              type="text" 
+              value={location} 
+              onChange={e => setLocation(e.target.value)} 
+              placeholder="e.g. Jantar Mantar, New Delhi" 
+            />
+          </div>
+
+          {/* ── Date + Time ── */}
+          <div className="form-row">
+            <div className="form-group">
+              <label><Calendar size={16} /> Date *</label>
+              <CustomDatePicker value={date} onChange={setDate} />
+            </div>
+            <div className="form-group">
+              <label><Clock size={16} /> Time *</label>
+              <CustomTimePicker value={time} onChange={setTime} />
+            </div>
+          </div>
+
+          {/* ── Verified Source Link ── */}
+          <div className="form-group">
+            <label><LinkIcon size={15} /> Verified Source / News Article Link (Optional)</label>
+            <input 
+              type="url" 
+              value={link} 
+              onChange={e => setLink(e.target.value)} 
+              placeholder="e.g. https://www.thehindu.com/news/national/..." 
+            />
+          </div>
+
+          {/* ── Trending Social Media Link ── */}
+          <div className="form-group">
+            <label><Sparkles size={15} /> Trending Social Media / Video Link (Optional)</label>
+            <input 
+              type="url" 
+              value={socialLink} 
+              onChange={e => setSocialLink(e.target.value)} 
+              placeholder="e.g. YouTube, Instagram Reel, or X video link" 
+            />
+          </div>
+
+          {/* ── Image drop zone ── */}
           <div className="media-tabs">
             <div className="media-tab-label">
-              <ImageIcon size={15} /> Image Upload
+              <ImageIcon size={15} /> Thumbnail Image (Optional)
             </div>
             <div
               className={`drop-zone ${dragActive ? 'drag-active' : ''} ${file ? 'has-file' : ''}`}
@@ -336,57 +480,30 @@ const MediaUploader = ({ onClose, onUpload }) => {
                 </div>
               ) : (
                 <label htmlFor="file-upload" className="drop-label">
-                  <UploadCloud size={44} color="var(--accent-blue)" />
+                  <UploadCloud size={36} color="var(--accent-blue)" />
                   <p>Drag &amp; drop an image</p>
-                  <span>JPG, PNG, GIF, WebP — or click to browse</span>
+                  <span>JPG, PNG, WebP — or click to browse</span>
                 </label>
               )}
             </div>
           </div>
 
-          {/* ── Divider ── */}
-          <div className="media-divider"><span>or embed a video</span></div>
-
-          {/* ── Video embed link ── */}
+          {/* ── Video Embed ── */}
           <div className="media-tabs">
             <div className="media-tab-label">
-              <Video size={15} /> Video Embed Link
+              <Video size={15} /> Embed Video Stream (Optional)
             </div>
             <EmbedLinkInput value={embedUrl} onChange={setEmbedUrl} />
-          </div>
-
-          {/* ── Title ── */}
-          <div className="form-group">
-            <label>Event Title</label>
-            <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="e.g., Opening Keynote" required />
-          </div>
-
-          {/* ── Date + Time ── */}
-          <div className="form-row">
-            <div className="form-group">
-              <label><Calendar size={16} /> Date</label>
-              <CustomDatePicker value={date} onChange={setDate} />
-            </div>
-            <div className="form-group">
-              <label><Clock size={16} /> Time</label>
-              <CustomTimePicker value={time} onChange={setTime} />
-            </div>
-          </div>
-
-          {/* ── Redirect link ── */}
-          <div className="form-group">
-            <label><LinkIcon size={16} style={{ display:'inline', verticalAlign:'text-bottom' }} /> Redirection Link (Optional)</label>
-            <input type="url" value={link} onChange={e => setLink(e.target.value)} placeholder="e.g., https://example.com" />
           </div>
 
           {/* ── Major checkbox ── */}
           <div className="form-checkbox">
             <input type="checkbox" id="is-major" checked={isMajor} onChange={e => setIsMajor(e.target.checked)} />
-            <label htmlFor="is-major">Mark as Major Event (Approved by Host)</label>
+            <label htmlFor="is-major">Mark as Major Event Highlight</label>
           </div>
 
           <button type="submit" className="submit-btn" disabled={!canSubmit}>
-            Add to Timeline
+            Add Event to Chronicle
           </button>
         </form>
       </motion.div>
