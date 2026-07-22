@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { format } from 'date-fns';
-import { Users, MapPin, CheckCircle, Radio, ThumbsUp, ThumbsDown, ExternalLink, Flag, Trash2, ShieldCheck, Tag } from 'lucide-react';
+import { Users, MapPin, CheckCircle, Radio, ThumbsUp, ThumbsDown, ExternalLink, Flag, Trash2, ShieldCheck, Tag, Sparkles } from 'lucide-react';
 import './Timeline.css';
-import MediaViewer from './MediaViewer';
+import SocialMediaSection from './SocialMediaSection';
 
 // ── Detect platform from URL for source link cards ──
 const PLATFORM_MAP = [
@@ -128,7 +128,8 @@ const Timeline = ({
   onVote, 
   onReportEvent, 
   onDeleteEvent, 
-  onDeleteMedia,
+  onAddSocialLink,
+  onDeleteSocialLink,
   onDismissReport,
   userVotes = {} 
 }) => {
@@ -218,7 +219,7 @@ const Timeline = ({
           
           const catColor = event.categoryColor || '#3b82f6';
           const linkCount = (event.links || []).length;
-          const mediaCount = (event.media || []).length;
+          const socialCount = (event.socialLinks || []).length;
 
           return (
             <React.Fragment key={`wrap-${event.id}`}>
@@ -289,9 +290,9 @@ const Timeline = ({
                           </span>
                         )}
 
-                        {mediaCount > 0 && (
-                          <span className="media-count-badge" style={{ background: `${catColor}25`, color: catColor, border: `1px solid ${catColor}40` }}>
-                            {mediaCount} media
+                        {socialCount > 0 && (
+                          <span className="sources-count-badge" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24', border: '1px solid rgba(245, 158, 11, 0.3)' }}>
+                            <Sparkles size={11} /> {socialCount} viral link{socialCount > 1 ? 's' : ''}
                           </span>
                         )}
 
@@ -361,7 +362,7 @@ const Timeline = ({
                   </div>
                 </div>
 
-                {/* Expanded Event Details Container — Info Panel + Media Gallery */}
+                {/* Expanded Event Details Container — Info Panel + Social Media Section */}
                 {isActive && (
                   <AnimatePresence>
                     <motion.div 
@@ -375,17 +376,14 @@ const Timeline = ({
                       {/* Detailed Event Description & Sources */}
                       <EventInfoPanel key={`info-${event.id}`} event={event} />
 
-                      {/* Attached Media Collection (if event has media) */}
-                      {mediaCount > 0 && (
-                        <MediaViewer
-                          event={event}
-                          onClose={() => onSelectEvent(null)}
-                          userRole={userRole}
-                          onDeleteMedia={onDeleteMedia}
-                          onReportMedia={onReportEvent}
-                          onVerifyMedia={onDismissReport}
-                        />
-                      )}
+                      {/* Trending Social Media Section */}
+                      <SocialMediaSection
+                        event={event}
+                        onClose={() => onSelectEvent(null)}
+                        userRole={userRole}
+                        onAddSocialLink={onAddSocialLink}
+                        onDeleteSocialLink={onDeleteSocialLink}
+                      />
                     </motion.div>
                   </AnimatePresence>
                 )}

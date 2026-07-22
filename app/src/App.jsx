@@ -98,6 +98,29 @@ function App() {
     }));
   };
 
+  // Add social link to an event (Host Action)
+  const handleAddSocialLink = (eventId, newSocialLink) => {
+    setEvents(prevEvents => prevEvents.map(event => {
+      if (event.id === eventId) {
+        const updatedLinks = [...(event.socialLinks || []), newSocialLink];
+        return { ...event, socialLinks: updatedLinks };
+      }
+      return event;
+    }));
+  };
+
+  // Delete social link from an event (Host Action)
+  const handleDeleteSocialLink = (eventId, linkIdx) => {
+    setEvents(prevEvents => prevEvents.map(event => {
+      if (event.id === eventId) {
+        const newLinks = [...(event.socialLinks || [])];
+        newLinks.splice(linkIdx, 1);
+        return { ...event, socialLinks: newLinks };
+      }
+      return event;
+    }));
+  };
+
   // Delete event (Host action)
   const handleDeleteEvent = (eventId) => {
     setEvents(prevEvents => prevEvents.filter(e => e.id !== eventId));
@@ -336,9 +359,9 @@ function App() {
             onVote={handleVote}
             onReportEvent={handleReportEvent}
             onDeleteEvent={handleDeleteEvent}
-            onDeleteMedia={handleDeleteMedia}
+            onAddSocialLink={handleAddSocialLink}
+            onDeleteSocialLink={handleDeleteSocialLink}
             onDismissReport={handleDismissReport}
-            onAddMediaToEvent={handleAddMediaToEvent}
             userVotes={userVotes}
           />
         )}

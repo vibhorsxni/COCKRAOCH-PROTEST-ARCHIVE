@@ -2,8 +2,8 @@
 //  CJP MOVEMENT — Unified Chronological Event Series
 //  Built from real sources: The Hindu, NDTV, Wikipedia, CJP Official Website
 //
-//  Single continuous chronological sequence — NO nested subcategories/subtimelines.
-//  Every event is a top-level milestone on the movement chronicle.
+//  Single continuous chronological sequence — NO nested subcategories.
+//  Each event includes `socialLinks` for viral and trending videos/posts.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const initialEvents = [
@@ -32,11 +32,21 @@ export const initialEvents = [
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests',
       'https://cockroachjantaparty.raizian.in/about'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=900&q=80',
-        title: 'Supreme Court Courtroom Hearing'
+        title: "CJI Kant's 'Cockroach' Courtroom Remark Clip",
+        url: 'https://www.youtube.com/watch?v=mock_cji_remark_clip',
+        timestamp: '2026-05-15T12:00:00Z'
+      },
+      {
+        title: "#WeAreAllCockroaches Trending Viral Video",
+        url: 'https://www.instagram.com/p/mock_we_are_cockroaches',
+        timestamp: '2026-05-15T14:30:00Z'
+      },
+      {
+        title: "Courtroom Audio & Public Reaction Thread",
+        url: 'https://x.com/cockroachjanta/status/123456789',
+        timestamp: '2026-05-15T16:00:00Z'
       }
     ]
   },
@@ -61,11 +71,16 @@ export const initialEvents = [
       'https://www.thehindu.com/news/national/cjp-protest-july-20-2026-cockroach-janata-party-jantar-mantar-parliament-march-sonam-wangchuk/article71242448.ece',
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1453396450673-3fe83d2db2c4?w=900&q=80',
-        title: 'Press Coverage of CJI Statement'
+        title: "CJI Clarification Statement Video Analysis",
+        url: 'https://www.youtube.com/watch?v=mock_cji_clarification',
+        timestamp: '2026-05-16T18:00:00Z'
+      },
+      {
+        title: "Youth Response Reel to CJI Clarification",
+        url: 'https://www.instagram.com/reel/mock_clarification_response',
+        timestamp: '2026-05-16T19:30:00Z'
       }
     ]
   },
@@ -95,11 +110,16 @@ export const initialEvents = [
       'https://cockroachjantaparty.raizian.in/founder',
       'https://www.instagram.com/cockroachjantaparty'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=900&q=80',
-        title: 'CJP Official Platform Launch'
+        title: "Abhijeet Dipke CJP Launch Manifesto Video",
+        url: 'https://www.youtube.com/watch?v=mock_cjp_launch_dipke',
+        timestamp: '2026-05-17T01:00:00Z'
+      },
+      {
+        title: "Official CJP Instagram Launch Post",
+        url: 'https://www.instagram.com/p/mock_cjp_official_launch',
+        timestamp: '2026-05-17T02:00:00Z'
       }
     ]
   },
@@ -124,11 +144,16 @@ export const initialEvents = [
       'https://www.instagram.com/cockroachjantaparty',
       'https://cockroachjantaparty.raizian.in/'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1562564055-71e051d33c19?w=900&q=80',
-        title: '22M Instagram Follower Surge'
+        title: "22M Followers Milestone Video Reel",
+        url: 'https://www.instagram.com/reel/mock_22m_milestone',
+        timestamp: '2026-05-20T10:00:00Z'
+      },
+      {
+        title: "Gen Z Cockroach Mascot Meme Compilation",
+        url: 'https://x.com/cockroachjanta/status/mock_memes_22m',
+        timestamp: '2026-05-21T14:00:00Z'
       }
     ]
   },
@@ -157,11 +182,16 @@ export const initialEvents = [
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests#Scandals',
       'https://www.ndtv.com/india-news/cjp-protest-in-delhi-live-cockroach-janta-party-parliament-protest-abhijeet-dipke-jantar-mantar-sonam-wangchuk-parliament-monsoon-session-saurav-das-11794314'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=900&q=80',
-        title: 'NEET Exam Leak Investigation'
+        title: "Exposing NEET 2026 Paper Leak Evidence Video",
+        url: 'https://www.youtube.com/watch?v=mock_neet_leak_expose',
+        timestamp: '2026-05-25T11:00:00Z'
+      },
+      {
+        title: "Student Protest Speeches Against NTA",
+        url: 'https://www.instagram.com/tv/mock_student_protest_speech',
+        timestamp: '2026-05-25T15:30:00Z'
       }
     ]
   },
@@ -186,11 +216,16 @@ export const initialEvents = [
       'https://cockroachjantaparty.raizian.in/delhi-protest',
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests#First_protest_at_Jantar_Mantar'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1591955506264-3f5a6834570a?w=900&q=80',
-        title: 'Jantar Mantar Camp Setup'
+        title: "Jantar Mantar Sit-in Opening Ceremony Reel",
+        url: 'https://www.instagram.com/reel/mock_jantar_mantar_day1',
+        timestamp: '2026-06-06T09:00:00Z'
+      },
+      {
+        title: "Cockroach Costume Clean-up Drive Video",
+        url: 'https://www.youtube.com/watch?v=mock_cleanup_drive_video',
+        timestamp: '2026-06-06T14:00:00Z'
       }
     ]
   },
@@ -215,11 +250,11 @@ export const initialEvents = [
       'https://cockroachjantaparty.raizian.in/postcard-protest',
       'https://cockroachjantaparty.raizian.in/id-card'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=900&q=80',
-        title: 'Postcard Protest Campaign'
+        title: "Postcard Protest How-To & Address Guide Video",
+        url: 'https://www.youtube.com/watch?v=mock_postcard_howto',
+        timestamp: '2026-06-15T11:00:00Z'
       }
     ]
   },
@@ -244,11 +279,11 @@ export const initialEvents = [
       'https://www.thehindu.com/news/national/cjp-protest-july-20-2026-cockroach-janata-party-jantar-mantar-parliament-march-sonam-wangchuk/article71242448.ece',
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80',
-        title: 'Re-examination Day Security'
+        title: "Re-examination Center Ground Report Reel",
+        url: 'https://www.instagram.com/reel/mock_reexam_ground_report',
+        timestamp: '2026-06-21T08:00:00Z'
       }
     ]
   },
@@ -273,11 +308,11 @@ export const initialEvents = [
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests#Scandals',
       'https://cockroachjantaparty.raizian.in/bulletin'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=900&q=80',
-        title: 'MeitY Account Ban Order'
+        title: "MeitY Ban Announcement & Backup Account Post",
+        url: 'https://x.com/cockroachjanta/status/mock_meity_ban_announcement',
+        timestamp: '2026-06-21T13:00:00Z'
       }
     ]
   },
@@ -291,7 +326,7 @@ export const initialEvents = [
     phase: 'Phase 4: The Hunger Strike',
     category: 'Hunger Strike',
     categoryColor: '#3b82f6',
-    title: 'Sonam Wangchuk Joins Protest & Announces Hunger Strike',
+    title: 'Sonam Wangchuk Joins Protest & Announces Fast',
     timestamp: '2026-06-28T02:30:00Z',   // June 28 • 8:00 AM IST
     location: 'Jantar Mantar, New Delhi',
     thumbnail: 'https://images.unsplash.com/photo-1569426489641-24e9b567a55c?w=800&q=80',
@@ -306,11 +341,16 @@ export const initialEvents = [
       'https://cockroachjantaparty.raizian.in/support-sonam-wangchuk',
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests#Hunger_strikes'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1569426489641-24e9b567a55c?w=900&q=80',
-        title: 'Sonam Wangchuk Joining Protest'
+        title: "Sonam Wangchuk Full Address at Jantar Mantar",
+        url: 'https://www.youtube.com/watch?v=mock_wangchuk_address_video',
+        timestamp: '2026-06-28T09:30:00Z'
+      },
+      {
+        title: "Wangchuk Hunger Strike Declaration Video",
+        url: 'https://www.instagram.com/reel/mock_wangchuk_fast_declaration',
+        timestamp: '2026-06-28T10:00:00Z'
       }
     ]
   },
@@ -335,11 +375,11 @@ export const initialEvents = [
       'https://www.thehindu.com/news/national/cjp-protest-july-20-2026-cockroach-janata-party-jantar-mantar-parliament-march-sonam-wangchuk/article71242448.ece',
       'https://www.ndtv.com/india-news/cjp-protest-in-delhi-live'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1631815590958-4d5e50c11dd9?w=900&q=80',
-        title: 'On-site Medical Checks'
+        title: "Wangchuk Health Monitoring Ground Bulletin",
+        url: 'https://www.youtube.com/watch?v=mock_wangchuk_health_update',
+        timestamp: '2026-07-12T08:00:00Z'
       }
     ]
   },
@@ -364,11 +404,16 @@ export const initialEvents = [
       'https://cockroachjantaparty.raizian.in/bulletin/cjp-announces-parliament-march-july-20-sonam-wangchuk',
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80',
-        title: 'Broadcast of Ghost Statement'
+        title: "Sonam Wangchuk Iconic 'Ghost Statement' Broadcast",
+        url: 'https://www.youtube.com/watch?v=mock_ghost_statement_full',
+        timestamp: '2026-07-17T13:00:00Z'
+      },
+      {
+        title: "Viral Instagram Reel of Ghost Statement (5M+ views)",
+        url: 'https://www.instagram.com/reel/mock_ghost_statement_reel',
+        timestamp: '2026-07-17T14:30:00Z'
       }
     ]
   },
@@ -393,11 +438,16 @@ export const initialEvents = [
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests#18_July',
       'https://www.ndtv.com/india-news/cjp-protest-in-delhi-live'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=900&q=80',
-        title: 'Midnight Police Action'
+        title: "Midnight Police Action & Ambulance Shifting Footage",
+        url: 'https://www.youtube.com/watch?v=mock_midnight_hospitalization',
+        timestamp: '2026-07-18T23:50:00Z'
+      },
+      {
+        title: "Abhijeet Dipke Fast Announcement Video",
+        url: 'https://www.instagram.com/reel/mock_dipke_solidarity_fast',
+        timestamp: '2026-07-19T01:00:00Z'
       }
     ]
   },
@@ -426,11 +476,11 @@ export const initialEvents = [
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests#20_July',
       'https://cockroachjantaparty.raizian.in/bulletin'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=900&q=80',
-        title: 'Police Barricading Central Delhi'
+        title: "Night Vigil Live Stream at Jantar Mantar",
+        url: 'https://www.youtube.com/watch?v=mock_night_vigil_livestream',
+        timestamp: '2026-07-19T21:00:00Z'
       }
     ]
   },
@@ -452,15 +502,25 @@ export const initialEvents = [
     isLive: false,
     isMajor: true,
     links: [
-      'https://www.thehindu.com/news/national/cjp-protest-july-20-2026-cockroach-janata-party-jantar-mantar-parliament-march-sonam-wangchuk/article71242448.ece',
+      'https://www.thehindu.com/news/national/cjp-protest-july-20-2026',
       'https://www.ndtv.com/india-news/cjp-protest-in-delhi-live',
-      'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests#Sansad_Chalo_March'
+      'https://cockroachjantaparty.raizian.in/delhi-protest'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1555848962-6e79363ec58f?w=900&q=80',
-        title: 'March Clashes at Shastri Bhawan'
+        title: "Raw Footage: Shastri Bhawan Barricade Clashes",
+        url: 'https://www.youtube.com/watch?v=mock_shastri_bhawan_clash',
+        timestamp: '2026-07-20T09:30:00Z'
+      },
+      {
+        title: "Teargas & Lathicharge Ground Video Reel",
+        url: 'https://www.instagram.com/reel/mock_teargas_ground_reel',
+        timestamp: '2026-07-20T10:15:00Z'
+      },
+      {
+        title: "Protesters Trapped at Hanuman Mandir Road Thread",
+        url: 'https://x.com/cockroachjanta/status/mock_mandir_road_clash',
+        timestamp: '2026-07-20T11:00:00Z'
       }
     ]
   },
@@ -485,11 +545,11 @@ export const initialEvents = [
       'https://www.thehindu.com/news/national/cjp-protest-july-20-2026',
       'https://www.ndtv.com/india-news/cjp-protest-in-delhi-live'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=80',
-        title: 'Memorandum Submission to JP Nadda'
+        title: "Press Briefing After Meeting JP Nadda Video",
+        url: 'https://www.youtube.com/watch?v=mock_nadda_meeting_briefing',
+        timestamp: '2026-07-20T12:30:00Z'
       }
     ]
   },
@@ -514,11 +574,16 @@ export const initialEvents = [
       'https://www.thehindu.com/news/national/cjp-protest-july-20-2026',
       'https://www.ndtv.com/india-news/cjp-protest-in-delhi-live'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80',
-        title: 'Wangchuk Statement from Hospital Bed'
+        title: "Wangchuk Hospital Bed Video Address",
+        url: 'https://www.youtube.com/watch?v=mock_wangchuk_hospital_bed_video',
+        timestamp: '2026-07-20T16:00:00Z'
+      },
+      {
+        title: "Instagram Reel: 'I Fast For India's Youth'",
+        url: 'https://www.instagram.com/reel/mock_fast_for_youth_reel',
+        timestamp: '2026-07-20T17:00:00Z'
       }
     ]
   },
@@ -543,11 +608,11 @@ export const initialEvents = [
       'https://www.thehindu.com/news/national/cjp-protest-july-20-2026',
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=900&q=80',
-        title: 'Night Vigil at Kerala House'
+        title: "Kerala House Night Vigil Live Stream",
+        url: 'https://www.youtube.com/watch?v=mock_kerala_house_vigil',
+        timestamp: '2026-07-20T21:30:00Z'
       }
     ]
   },
@@ -573,11 +638,16 @@ export const initialEvents = [
       'https://cockroachjantaparty.raizian.in/delhi-protest',
       'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests'
     ],
-    media: [
+    socialLinks: [
       {
-        type: 'image',
-        url: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=900&q=80',
-        title: 'Reclaimed Jantar Mantar Site'
+        title: "LIVE Stream: Reclaiming Jantar Mantar Site",
+        url: 'https://www.youtube.com/watch?v=mock_reclaiming_jantar_mantar_live',
+        timestamp: '2026-07-21T09:30:00Z'
+      },
+      {
+        title: "Instagram Reel: 'We Are Back at Jantar Mantar'",
+        url: 'https://www.instagram.com/reel/mock_we_are_back_jantar_mantar',
+        timestamp: '2026-07-21T10:15:00Z'
       }
     ]
   }
