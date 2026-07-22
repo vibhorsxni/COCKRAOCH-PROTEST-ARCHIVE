@@ -252,7 +252,7 @@ function App() {
       {/* Top Header */}
       <header className="app-header">
         <div className="brand-section">
-          <h1>Collaborative Timeline</h1>
+          <h1>The Protest Chronicles</h1>
           <span className="live-indicator-tag">
             <span className="pulse-dot" /> 19 Events Live
           </span>
