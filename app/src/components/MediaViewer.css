@@ -1,0 +1,415 @@
+.media-gallery {
+  padding: 24px;
+  width: 100%;
+  max-width: 800px;
+  overflow-y: auto;
+}
+
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.gallery-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.gallery-count {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  display: block;
+}
+
+.close-btn {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: var(--text-primary);
+}
+
+/* ───────── Subtimeline ───────── */
+.subtimeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-left: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.subtimeline-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 6px;
+  width: 2px;
+  background: var(--timeline-line);
+}
+
+.subtimeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.subtimeline-item.reported-item {
+  opacity: 0.75;
+}
+
+.subtimeline-node {
+  position: absolute;
+  left: -24px;
+  top: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-base);
+  border: 2px solid;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.subtimeline-item:hover .subtimeline-node {
+  transform: scale(1.4);
+}
+
+.subtimeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.subtimeline-time {
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.media-item-title {
+  color: var(--text-secondary);
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+
+/* ───────── Media Item ───────── */
+.media-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.video-wrapper, .image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.video-wrapper video, .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.media-item:hover .video-wrapper video,
+.media-item:hover .image-wrapper img {
+  transform: scale(1.05);
+}
+
+.play-overlay, .type-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.play-overlay {
+  width: 48px;
+  height: 48px;
+}
+
+.type-icon {
+  top: 12px;
+  right: 12px;
+  left: auto;
+  transform: none;
+  width: 28px;
+  height: 28px;
+}
+
+/* ───────── Host Controls Bar ───────── */
+.host-media-controls {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.media-ctrl-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.promote-btn {
+  background: rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+  border-color: rgba(59, 130, 246, 0.35);
+}
+.promote-btn:hover {
+  background: rgba(59, 130, 246, 0.45);
+  color: #fff;
+}
+
+.verify-btn {
+  background: rgba(34, 197, 94, 0.2);
+  color: #86efac;
+  border-color: rgba(34, 197, 94, 0.35);
+}
+.verify-btn:hover {
+  background: rgba(34, 197, 94, 0.4);
+  color: #fff;
+}
+
+.delete-btn {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+.delete-btn:hover {
+  background: rgba(239, 68, 68, 0.4);
+  color: #fff;
+}
+
+.delete-confirm {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(15, 15, 20, 0.85);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  color: #fca5a5;
+  backdrop-filter: blur(12px);
+}
+
+.confirm-yes {
+  background: rgba(239, 68, 68, 0.5);
+  color: #fff;
+  border-color: rgba(239, 68, 68, 0.6);
+}
+.confirm-yes:hover { background: rgba(239, 68, 68, 0.8); }
+
+.confirm-no {
+  background: rgba(255,255,255,0.08);
+  color: #d1d5db;
+  border-color: rgba(255,255,255,0.15);
+}
+.confirm-no:hover { background: rgba(255,255,255,0.15); }
+
+/* ───────── Reported Overlay (host sees) ───────── */
+.reported-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
+  color: #fca5a5;
+  font-size: 0.8rem;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* ───────── User Report Button ───────── */
+.report-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(0,0,0,0.5);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+  opacity: 0;
+}
+
+.media-item:hover .report-btn {
+  opacity: 1;
+}
+
+.report-btn:hover {
+  background: rgba(239, 68, 68, 0.35);
+  border-color: rgba(239, 68, 68, 0.55);
+  color: #fff;
+}
+
+.reported-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(239, 68, 68, 0.25);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .media-gallery {
+    padding: 16px;
+  }
+}
+
+/* ───────── User controls bar (bottom of media item) ───────── */
+.user-media-controls {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.media-item:hover .user-media-controls {
+  opacity: 1;
+}
+
+/* Flag as Main Event button */
+.flag-main-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.flag-main-btn:hover:not(:disabled) {
+  background: rgba(251, 191, 36, 0.2);
+  border-color: rgba(251, 191, 36, 0.55);
+  color: #fde68a;
+}
+
+.flag-main-btn.flagged {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.4);
+  cursor: default;
+}
+
+/* Report button — right side */
+.report-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(0,0,0,0.5);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+  margin-left: auto;
+}
+
+.report-btn:hover {
+  background: rgba(239, 68, 68, 0.35);
+  border-color: rgba(239, 68, 68, 0.55);
+  color: #fff;
+}
+
+.reported-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: rgba(239, 68, 68, 0.25);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  pointer-events: none;
+  margin-left: auto;
+}
+
