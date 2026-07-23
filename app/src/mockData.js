@@ -755,11 +755,45 @@ export const initialEvents = [
   },
 
   {
+    id: 'e_24',
+    phase: 'Phase 5: Sansad Chalo March',
+    category: 'Protest',
+    categoryColor: '#22c55e',
+    title: 'Parliament Shutdown & Opposition Leaders Detained Outside PM Residence',
+    timestamp: '2026-07-22T04:30:00Z',   // July 22 • 10:00 AM IST
+    location: 'Parliament & 7 Lok Kalyan Marg, New Delhi',
+    thumbnail: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&q=80',
+    description:
+      'In direct solidarity with the Cockroach Janta Party (CJP) youth movement, opposition leaders led by Rahul Gandhi and Priyanka Gandhi staged a sit-in outside Prime Minister Narendra Modi\'s official residence. Both were forcibly detained by Delhi Police. Inside Parliament, opposition MPs forced a full suspension of proceedings in both houses demanding Education Minister Dharmendra Pradhan\'s resignation.',
+    upvotes: 356,
+    downvotes: 12,
+    contributors: 18,
+    isLive: false,
+    isMajor: true,
+    links: [
+      'https://www.theguardian.com/world/2026/jul/22/india-cockroach-janta-party-cjp-protests-rahul-gandhi-detained',
+      'https://www.aljazeera.com/news/2026/7/22/india-protest-how-modis-refusal-to-sack-education-minister-fits-a-pattern'
+    ],
+    socialLinks: [
+      {
+        title: "Rahul Gandhi Detained Outside PM Residence Video",
+        url: 'https://www.youtube.com/watch?v=mock_rahul_gandhi_detained',
+        timestamp: '2026-07-22T11:00:00Z'
+      },
+      {
+        title: "Instagram Reel: Opposition Shuts Down Parliament",
+        url: 'https://www.instagram.com/reel/mock_parliament_shutdown_cjp',
+        timestamp: '2026-07-22T12:30:00Z'
+      }
+    ]
+  },
+
+  {
     id: 'e_22',
     phase: 'Phase 5: Sansad Chalo March',
     category: 'Live Update',
     categoryColor: '#06b6d4',
-    title: 'Day 23: CJP Press Conference & Continued Jantar Mantar Vigil (Live)',
+    title: 'Day 23: CJP Press Conference & Continued Jantar Mantar Vigil',
     timestamp: '2026-07-23T05:30:00Z',   // July 23 • 11:00 AM IST
     location: 'Jantar Mantar, New Delhi',
     thumbnail: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
@@ -768,7 +802,7 @@ export const initialEvents = [
     upvotes: 420,
     downvotes: 11,
     contributors: 22,
-    isLive: true,
+    isLive: false,
     isMajor: true,
     links: [
       'https://www.ndtv.com/india-news/cjp-protest-day-23-jantar-mantar-live',
@@ -785,6 +819,40 @@ export const initialEvents = [
         title: "Instagram Reel: 'Day 23 & We Stand Strong'",
         url: 'https://www.instagram.com/reel/mock_day23_stand_strong',
         timestamp: '2026-07-23T12:15:00Z'
+      }
+    ]
+  },
+
+  {
+    id: 'e_25',
+    phase: 'Phase 5: Sansad Chalo March',
+    category: 'Police Action',
+    categoryColor: '#f43f5e',
+    title: 'Mumbai Cop Removed After Viral Video Threatening CJP Student Protesters (Live)',
+    timestamp: '2026-07-23T08:00:00Z',   // July 23 • 1:30 PM IST
+    location: 'Mumbai (Shivaji Park, Chembur & Azad Maidan)',
+    thumbnail: 'https://images.unsplash.com/photo-1453396450673-3fe83d2db2c4?w=800&q=80',
+    description:
+      'A major scandal erupted after a viral video filmed inside a police van showed a Mumbai police officer threatening detained student CJP protesters with planting 50 grams of drugs in their pockets to ruin their lives without bail. Following public outrage and marches joined by public figures like actor Imran Khan, Mumbai Police ordered a formal inquiry and removed the officer from duty.',
+    upvotes: 498,
+    downvotes: 6,
+    contributors: 29,
+    isLive: true,
+    isMajor: true,
+    links: [
+      'https://www.indiatoday.in/india/story/will-frame-you-in-drug-case-viral-video-shows-mumbai-cop-threatening-students-inquiry-ordered-2954276-2026-07-23',
+      'https://www.indiatoday.in/'
+    ],
+    socialLinks: [
+      {
+        title: "Viral Video: Mumbai Cop Threatening Students in Police Van",
+        url: 'https://www.youtube.com/watch?v=mock_mumbai_cop_viral_video',
+        timestamp: '2026-07-23T09:00:00Z'
+      },
+      {
+        title: "Instagram Reel: Mumbai Student Marches & Actor Imran Khan Support",
+        url: 'https://www.instagram.com/reel/mock_mumbai_students_imran_khan',
+        timestamp: '2026-07-23T10:30:00Z'
       }
     ]
   }
