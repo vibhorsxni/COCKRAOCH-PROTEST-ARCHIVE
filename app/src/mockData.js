@@ -631,7 +631,7 @@ export const initialEvents = [
     upvotes: 245,
     downvotes: 7,
     contributors: 15,
-    isLive: true,
+    isLive: false,
     isMajor: true,
     links: [
       'https://www.thehindu.com/news/national/cjp-protest-july-20-2026-cockroach-janata-party-jantar-mantar-parliament-march-sonam-wangchuk/article71242448.ece',
@@ -648,6 +648,109 @@ export const initialEvents = [
         title: "Instagram Reel: 'We Are Back at Jantar Mantar'",
         url: 'https://www.instagram.com/reel/mock_we_are_back_jantar_mantar',
         timestamp: '2026-07-21T10:15:00Z'
+      }
+    ]
+  },
+
+  {
+    id: 'e_20',
+    phase: 'Phase 5: Sansad Chalo March',
+    category: 'Judicial',
+    categoryColor: '#ef4444',
+    title: 'High Court Grants Sonam Wangchuk Transfer to Medanta Hospital',
+    timestamp: '2026-07-21T09:30:00Z',   // July 21 • 3:00 PM IST
+    location: 'Delhi High Court & Medanta Hospital, Gurugram',
+    thumbnail: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
+    description:
+      'Following medical petitions regarding deteriorating vital signs after 21 days of indefinite fast, the Delhi High Court sanctioned Sonam Wangchuk\'s transfer from Safdarjung Hospital to Medanta Hospital in Gurugram for multi-specialty medical monitoring.',
+    upvotes: 184,
+    downvotes: 5,
+    contributors: 8,
+    isLive: false,
+    isMajor: false,
+    links: [
+      'https://www.livelaw.in/news-updates/delhi-hc-sonam-wangchuk-transfer-medanta-hospital',
+      'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests'
+    ],
+    socialLinks: [
+      {
+        title: "Wangchuk Transfer to Medanta Hospital Video Coverage",
+        url: 'https://www.youtube.com/watch?v=mock_wangchuk_medanta_transfer',
+        timestamp: '2026-07-21T15:30:00Z'
+      },
+      {
+        title: "Instagram Reel: Hospital Transfer & Student Vigil",
+        url: 'https://www.instagram.com/reel/mock_hospital_transfer_vigil',
+        timestamp: '2026-07-21T16:45:00Z'
+      }
+    ]
+  },
+
+  {
+    id: 'e_21',
+    phase: 'Phase 5: Sansad Chalo March',
+    category: 'Negotiation',
+    categoryColor: '#fb7185',
+    title: 'Wangchuk Demands Safety Guarantee for Marchers & PM Fast-Track Announcement',
+    timestamp: '2026-07-22T10:30:00Z',   // July 22 • 4:00 PM IST
+    location: 'Medanta Hospital, Gurugram & New Delhi',
+    thumbnail: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
+    description:
+      'From his hospital room, Sonam Wangchuk stated he would end his hunger strike if the government provides a written commitment that no student who joined the July 20 Sansad Chalo march faces legal or punitive action. Simultaneously, PM Narendra Modi announced dedicated fast-track courts to prosecute exam paper leak networks.',
+    upvotes: 312,
+    downvotes: 9,
+    contributors: 14,
+    isLive: false,
+    isMajor: true,
+    links: [
+      'https://www.thehindu.com/news/national/wangchuk-fast-condition-sansad-chalo-safety',
+      'https://www.ndtv.com/india-news/pm-modi-fast-track-courts-paper-leaks-2026'
+    ],
+    socialLinks: [
+      {
+        title: "Sonam Wangchuk Statement on Sansad Chalo Safety Pledge",
+        url: 'https://www.youtube.com/watch?v=mock_wangchuk_safety_pledge',
+        timestamp: '2026-07-22T16:30:00Z'
+      },
+      {
+        title: "Instagram Reel: 'Protect Our Students First'",
+        url: 'https://www.instagram.com/reel/mock_protect_our_students',
+        timestamp: '2026-07-22T18:00:00Z'
+      }
+    ]
+  },
+
+  {
+    id: 'e_22',
+    phase: 'Phase 5: Sansad Chalo March',
+    category: 'Live Update',
+    categoryColor: '#06b6d4',
+    title: 'Day 23: CJP Press Conference & Continued Jantar Mantar Vigil (Live)',
+    timestamp: '2026-07-23T05:30:00Z',   // July 23 • 11:00 AM IST
+    location: 'Jantar Mantar, New Delhi',
+    thumbnail: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
+    description:
+      'Entering Day 23, CJP organizers and student representatives held a joint press conference at Jantar Mantar, asserting that peaceful assemblies will continue until Education Minister Dharmendra Pradhan resigns and written safety guarantees for student protesters are officially signed.',
+    upvotes: 420,
+    downvotes: 11,
+    contributors: 22,
+    isLive: true,
+    isMajor: true,
+    links: [
+      'https://www.ndtv.com/india-news/cjp-protest-day-23-jantar-mantar-live',
+      'https://cockroachjantaparty.raizian.in/delhi-protest',
+      'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests'
+    ],
+    socialLinks: [
+      {
+        title: "LIVE Stream: Day 23 CJP Jantar Mantar Press Conference",
+        url: 'https://www.youtube.com/watch?v=mock_day23_press_conference_live',
+        timestamp: '2026-07-23T11:30:00Z'
+      },
+      {
+        title: "Instagram Reel: 'Day 23 & We Stand Strong'",
+        url: 'https://www.instagram.com/reel/mock_day23_stand_strong',
+        timestamp: '2026-07-23T12:15:00Z'
       }
     ]
   }
