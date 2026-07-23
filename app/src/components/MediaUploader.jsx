@@ -41,6 +41,7 @@ const PHASES_LIST = [
 ];
 
 const CATEGORY_MAP = [
+  { name: 'Reel', color: '#e1306c' },
   { name: 'Live Update', color: '#06b6d4' },
   { name: 'March', color: '#ef4444' },
   { name: 'Protest', color: '#22c55e' },
@@ -298,7 +299,6 @@ const MediaUploader = ({ onClose, onUpload }) => {
     if (!canSubmit) return;
 
     const timestamp = new Date(`${date}T${time}`).toISOString();
-    const catObj = CATEGORY_MAP.find(c => c.name === category) || { name: category, color: '#06b6d4' };
 
     let mediaItem;
     if (file) {
@@ -320,10 +320,27 @@ const MediaUploader = ({ onClose, onUpload }) => {
         ? `https://img.youtube.com/vi/${embed.id}/hqdefault.jpg`
         : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80';
 
+    const finalSocialLinks = [...(socialLink.trim() ? [{
+      title: `${title.trim()} Video Clip`,
+      url: socialLink.trim(),
+      timestamp: new Date().toISOString()
+    }] : [])];
+
+    if (embedUrl.trim() && !finalSocialLinks.some(s => s.url === embedUrl.trim())) {
+      finalSocialLinks.push({
+        title: `${title.trim()} Video Stream`,
+        url: embedUrl.trim(),
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    const finalCategory = (category === 'Live Update' && finalSocialLinks.length > 0) ? 'Reel' : category;
+    const catObj = CATEGORY_MAP.find(c => c.name === finalCategory) || { name: finalCategory, color: '#e1306c' };
+
     onUpload({
       id: `e_${Date.now()}`,
       phase,
-      category,
+      category: finalCategory,
       categoryColor: catObj.color,
       title: title.trim(),
       description: description.trim(),
@@ -336,13 +353,7 @@ const MediaUploader = ({ onClose, onUpload }) => {
       isMajor,
       isLive: false,
       links: link.trim() ? [link.trim()] : [],
-      socialLinks: socialLink.trim() ? [
-        {
-          title: `${title.trim()} Video Clip`,
-          url: socialLink.trim(),
-          timestamp: new Date().toISOString()
-        }
-      ] : [],
+      socialLinks: finalSocialLinks,
       media: mediaItem ? [mediaItem] : []
     });
     onClose();
