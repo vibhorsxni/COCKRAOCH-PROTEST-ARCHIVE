@@ -721,6 +721,40 @@ export const initialEvents = [
   },
 
   {
+    id: 'e_23',
+    phase: 'Phase 5: Sansad Chalo March',
+    category: 'Police Action',
+    categoryColor: '#f43f5e',
+    title: 'Patna Lok Bhavan March: Police Lathi Charge & Clashes Over NEET Leak',
+    timestamp: '2026-07-22T08:30:00Z',   // July 22 • 2:00 PM IST
+    location: 'Lok Bhavan & Assembly, Patna, Bihar',
+    thumbnail: 'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&q=80',
+    description:
+      'Solidarity student demonstrations in Patna escalated as hundreds of AISA and student activists marched toward Lok Bhavan demanding Education Minister Dharmendra Pradhan\'s resignation over the 2026 NEET-UG paper leak. Bihar Police deployed water cannons, tear gas, and baton charges. Clashes near the BJP office injured over 20 police personnel and student marchers, prompting 15 FIRs and an opposition walkout in the Bihar Assembly.',
+    upvotes: 289,
+    downvotes: 8,
+    contributors: 16,
+    isLive: false,
+    isMajor: true,
+    links: [
+      'https://www.thehindu.com/news/national/other-states/patna-student-protest-neet-leak-police-lathi-charge',
+      'https://en.wikipedia.org/wiki/2026_Delhi_Jantar_Mantar_protests'
+    ],
+    socialLinks: [
+      {
+        title: "Patna Lok Bhavan March & Police Water Cannon Clip",
+        url: 'https://www.youtube.com/watch?v=mock_patna_march_watercannon',
+        timestamp: '2026-07-22T14:30:00Z'
+      },
+      {
+        title: "Instagram Reel: 'Solidarity Lathi Charge in Patna'",
+        url: 'https://www.instagram.com/reel/mock_patna_lathicharge_reel',
+        timestamp: '2026-07-22T16:00:00Z'
+      }
+    ]
+  },
+
+  {
     id: 'e_22',
     phase: 'Phase 5: Sansad Chalo March',
     category: 'Live Update',
