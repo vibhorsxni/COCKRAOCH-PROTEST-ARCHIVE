@@ -420,6 +420,7 @@ function App() {
             onSelectEvent={setActiveEventId} 
             isMobile={viewMode === 'vertical'}
             userRole={userRole}
+            selectedCategory={selectedCategory}
             onVote={handleVote}
             onReportEvent={handleReportEvent}
             onDeleteEvent={handleDeleteEvent}

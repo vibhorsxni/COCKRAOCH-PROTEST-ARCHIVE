@@ -125,6 +125,7 @@ const Timeline = ({
   onSelectEvent, 
   isMobile, 
   userRole, 
+  selectedCategory,
   onVote, 
   onReportEvent, 
   onDeleteEvent, 
@@ -248,102 +249,119 @@ const Timeline = ({
                 className={`timeline-milestone ${isActive ? 'active' : ''} ${isTop ? 'position-top' : 'position-bottom'}`}
                 onClick={() => handleNodeClick(event.id)}
               >
-                {/* Event Card */}
-                <motion.div 
-                  className="event-card glass-panel glass-panel-hover"
-                  initial={{ opacity: 0, y: isTop ? -15 : 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.5) }}
-                  style={{ borderColor: isActive ? catColor : undefined }}
-                >
-                  <div className="card-thumbnail">
-                    <img src={event.thumbnail} alt={event.title} loading="lazy" />
-                    
-                    {event.isLive && (
-                      <div className="live-badge">
-                        <Radio size={11} className="pulse-icon" /> LIVE
-                      </div>
-                    )}
-                    
-                    {event.category && (
-                      <div className="category-pill" style={{ background: catColor }}>
-                        {event.category}
-                      </div>
-                    )}
-                  </div>
-                  
-                  <div className="card-content">
-                    <div className="card-meta">
-                      <span className="timestamp" style={{ color: catColor }}>
-                        {format(new Date(event.timestamp), 'MMM d • h:mm a')}
-                      </span>
+                {/* Event Card (Normal Mode) OR Video Links Only Card (Reel Mode) */}
+                {selectedCategory === 'Reel' ? (
+                  <motion.div 
+                    className="reel-links-only-card"
+                    initial={{ opacity: 0, y: isTop ? -15 : 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.5) }}
+                  >
+                    <SocialMediaSection
+                      event={event}
+                      userRole={userRole}
+                      onAddSocialLink={onAddSocialLink}
+                      onDeleteSocialLink={onDeleteSocialLink}
+                      isReelModeOnly={true}
+                    />
+                  </motion.div>
+                ) : (
+                  <motion.div 
+                    className="event-card glass-panel glass-panel-hover"
+                    initial={{ opacity: 0, y: isTop ? -15 : 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.5) }}
+                    style={{ borderColor: isActive ? catColor : undefined }}
+                  >
+                    <div className="card-thumbnail">
+                      <img src={event.thumbnail} alt={event.title} loading="lazy" />
+                      
+                      {event.isLive && (
+                        <div className="live-badge">
+                          <Radio size={11} className="pulse-icon" /> LIVE
+                        </div>
+                      )}
+                      
+                      {event.category && (
+                        <div className="category-pill" style={{ background: catColor }}>
+                          {event.category}
+                        </div>
+                      )}
                     </div>
-
-                    <h4 className="title">{event.title}</h4>
-                    <p className="description">{event.description}</p>
                     
-                    <div className="card-footer">
-                      <div className="footer-stats">
-                        {event.location && (
-                          <span className="stat-location" title={event.location}>
-                            <MapPin size={12} /> {event.location.split(',')[0]}
-                          </span>
-                        )}
-
-                        {socialCount > 0 && (
-                          <span className="sources-count-badge" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24', border: '1px solid rgba(245, 158, 11, 0.3)' }}>
-                            <Sparkles size={11} /> {socialCount} viral link{socialCount > 1 ? 's' : ''}
-                          </span>
-                        )}
-
-                        {linkCount > 0 && (
-                          <span className="sources-count-badge">
-                            <ExternalLink size={11} /> {linkCount} source{linkCount > 1 ? 's' : ''}
-                          </span>
-                        )}
+                    <div className="card-content">
+                      <div className="card-meta">
+                        <span className="timestamp" style={{ color: catColor }}>
+                          {format(new Date(event.timestamp), 'MMM d • h:mm a')}
+                        </span>
                       </div>
 
-                      <div className="vote-controls">
-                        <button 
-                          className={`vote-btn upvote ${userVotes[event.id] === 'up' ? 'voted' : ''}`} 
-                          onClick={(e) => { e.stopPropagation(); onVote(event.id, 'up'); }}
-                          title="Upvote event"
-                        >
-                          <ThumbsUp size={13} /> <span>{event.upvotes || 0}</span>
-                        </button>
-                        <button 
-                          className={`vote-btn downvote ${userVotes[event.id] === 'down' ? 'voted' : ''}`} 
-                          onClick={(e) => { e.stopPropagation(); onVote(event.id, 'down'); }}
-                          title="Downvote event"
-                        >
-                          <ThumbsDown size={13} /> <span>{event.downvotes || 0}</span>
-                        </button>
+                      <h4 className="title">{event.title}</h4>
+                      <p className="description">{event.description}</p>
+                      
+                      <div className="card-footer">
+                        <div className="footer-stats">
+                          {event.location && (
+                            <span className="stat-location" title={event.location}>
+                              <MapPin size={12} /> {event.location.split(',')[0]}
+                            </span>
+                          )}
 
-                        {/* Report Event (User role) */}
-                        {userRole === 'user' && (
-                          <button
-                            className={`report-event-btn ${event.isReported ? 'reported' : ''}`}
-                            onClick={(e) => { e.stopPropagation(); onReportEvent(event.id); }}
-                            title={event.isReported ? 'Reported to Host' : 'Report Event'}
-                          >
-                            <Flag size={12} />
-                          </button>
-                        )}
+                          {socialCount > 0 && (
+                            <span className="sources-count-badge" style={{ background: 'rgba(245, 158, 11, 0.15)', color: '#fbbf24', border: '1px solid rgba(245, 158, 11, 0.3)' }}>
+                              <Sparkles size={11} /> {socialCount} viral link{socialCount > 1 ? 's' : ''}
+                            </span>
+                          )}
 
-                        {/* Delete Event (Host role) */}
-                        {userRole === 'host' && (
-                          <button
-                            className="host-delete-event-btn"
-                            onClick={(e) => { e.stopPropagation(); onDeleteEvent(event.id); }}
-                            title="Delete Event from Timeline"
+                          {linkCount > 0 && (
+                            <span className="sources-count-badge">
+                              <ExternalLink size={11} /> {linkCount} source{linkCount > 1 ? 's' : ''}
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="vote-controls">
+                          <button 
+                            className={`vote-btn upvote ${userVotes[event.id] === 'up' ? 'voted' : ''}`} 
+                            onClick={(e) => { e.stopPropagation(); onVote(event.id, 'up'); }}
+                            title="Upvote event"
                           >
-                            <Trash2 size={13} />
+                            <ThumbsUp size={13} /> <span>{event.upvotes || 0}</span>
                           </button>
-                        )}
+                          <button 
+                            className={`vote-btn downvote ${userVotes[event.id] === 'down' ? 'voted' : ''}`} 
+                            onClick={(e) => { e.stopPropagation(); onVote(event.id, 'down'); }}
+                            title="Downvote event"
+                          >
+                            <ThumbsDown size={13} /> <span>{event.downvotes || 0}</span>
+                          </button>
+
+                          {/* Report Event (User role) */}
+                          {userRole === 'user' && (
+                            <button
+                              className={`report-event-btn ${event.isReported ? 'reported' : ''}`}
+                              onClick={(e) => { e.stopPropagation(); onReportEvent(event.id); }}
+                              title={event.isReported ? 'Reported to Host' : 'Report Event'}
+                            >
+                              <Flag size={12} />
+                            </button>
+                          )}
+
+                          {/* Delete Event (Host role) */}
+                          {userRole === 'host' && (
+                            <button
+                              className="host-delete-event-btn"
+                              onClick={(e) => { e.stopPropagation(); onDeleteEvent(event.id); }}
+                              title="Delete Event from Timeline"
+                            >
+                              <Trash2 size={13} />
+                            </button>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                )}
 
                 {/* Connecting Line to Node Marker */}
                 <div className="connection-line" />
@@ -362,8 +380,8 @@ const Timeline = ({
                   </div>
                 </div>
 
-                {/* Expanded Event Details Container — Info Panel + Social Media Section */}
-                {isActive && (
+                {/* Expanded Event Details Container — Info Panel + Social Media Section (Normal Mode) */}
+                {isActive && selectedCategory !== 'Reel' && (
                   <AnimatePresence>
                     <motion.div 
                       className="expanded-details-container"
@@ -373,10 +391,7 @@ const Timeline = ({
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                       onClick={e => e.stopPropagation()}
                     >
-                      {/* Detailed Event Description & Sources */}
                       <EventInfoPanel key={`info-${event.id}`} event={event} />
-
-                      {/* Trending Social Media Section */}
                       <SocialMediaSection
                         event={event}
                         onClose={() => onSelectEvent(null)}

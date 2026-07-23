@@ -707,12 +707,17 @@
   z-index: 1;
 }
 
-.vertical .event-card {
+.vertical .event-card,
+.vertical .reel-links-only-card {
   width: 100%;
   max-width: 480px;
-  padding: 16px;
+  padding: 0;
   gap: 12px;
   box-sizing: border-box;
+}
+
+.vertical .event-card {
+  padding: 16px;
 }
 
 .vertical .card-thumbnail {

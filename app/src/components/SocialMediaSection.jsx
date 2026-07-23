@@ -32,7 +32,8 @@ const SocialMediaSection = ({
   onClose, 
   userRole, 
   onAddSocialLink, 
-  onDeleteSocialLink 
+  onDeleteSocialLink,
+  isReelModeOnly = false
 }) => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [newTitle, setNewTitle] = useState('');
@@ -69,41 +70,43 @@ const SocialMediaSection = ({
 
   return (
     <motion.div 
-      className="social-section-wrapper glass-panel"
+      className={`social-section-wrapper glass-panel ${isReelModeOnly ? 'reel-mode-only' : ''}`}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}
       transition={{ duration: 0.3 }}
     >
-      {/* Header Bar */}
-      <div className="social-section-header">
-        <div className="header-title-group">
-          <Sparkles size={16} className="sparkle-icon" />
-          <h3>Trending Social Media &amp; Viral Clips</h3>
-          <span className="social-count-tag">
-            {socialLinks.length} link{socialLinks.length !== 1 ? 's' : ''}
-          </span>
-        </div>
+      {/* Header Bar — Hidden in Reel mode unless Host needs to add link */}
+      {(!isReelModeOnly || userRole === 'host') && (
+        <div className="social-section-header">
+          <div className="header-title-group">
+            <Sparkles size={15} className="sparkle-icon" />
+            <h3>{isReelModeOnly ? event.title : 'Trending Social Media & Viral Clips'}</h3>
+            <span className="social-count-tag">
+              {socialLinks.length} link{socialLinks.length !== 1 ? 's' : ''}
+            </span>
+          </div>
 
-        <div className="header-action-group">
-          {/* Host-only Add Button */}
-          {userRole === 'host' && (
-            <button 
-              className="host-add-link-btn"
-              onClick={() => setShowAddForm(!showAddForm)}
-              title="Add a new viral or trending video link"
-            >
-              <Plus size={14} /> Add Social Link
-            </button>
-          )}
+          <div className="header-action-group">
+            {/* Host-only Add Button */}
+            {userRole === 'host' && (
+              <button 
+                className="host-add-link-btn"
+                onClick={() => setShowAddForm(!showAddForm)}
+                title="Add a new viral or trending video link"
+              >
+                <Plus size={14} /> Add Social Link
+              </button>
+            )}
 
-          {onClose && (
-            <button className="social-close-btn" onClick={onClose} title="Close section">
-              <X size={16} />
-            </button>
-          )}
+            {onClose && (
+              <button className="social-close-btn" onClick={onClose} title="Close section">
+                <X size={16} />
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Host-Only Form: Add Trending Social Link */}
       {userRole === 'host' && showAddForm && (

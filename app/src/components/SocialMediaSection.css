@@ -332,3 +332,14 @@
   background: rgba(239, 68, 68, 0.2);
   color: #f87171;
 }
+
+/* Reel Mode Only - Clean links stream styling */
+.social-section-wrapper.reel-mode-only {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  gap: 8px;
+}
